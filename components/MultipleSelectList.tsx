@@ -44,13 +44,14 @@ const MultipleSelectList: React.FC<MultipleSelectListProps> = ({
         badgeTextStyles,
         checkBoxStyles,
         save = 'key',
-        dropdownShown = false
+        dropdownShown = false,
+        defaultSelected = [], 
     }) => {
 
     const oldOption = React.useRef(null)
     const [_firstRender,_setFirstRender] = React.useState<boolean>(true);
     const [dropdown, setDropdown] = React.useState<boolean>(dropdownShown);
-    const [selectedval, setSelectedVal] = React.useState<any>([]);
+    const [selectedval, setSelectedVal] = React.useState<any>(defaultSelected);
     const [height,setHeight] = React.useState<number>(350)
     const animatedvalue = React.useRef(new Animated.Value(0)).current;
     const [filtereddata,setFilteredData] = React.useState(data);
@@ -107,7 +108,9 @@ const MultipleSelectList: React.FC<MultipleSelectListProps> = ({
         
     },[dropdownShown])
 
-
+    React.useEffect(() => {
+        setSelected(defaultSelected);
+    }, []);
 
 
 
